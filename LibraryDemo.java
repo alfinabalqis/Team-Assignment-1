@@ -11,11 +11,11 @@ public class LibraryDemo {
 
         // Menambahkan beberapa buku awal
         System.out.println("1. MENAMBAHKAN BUKU BARU:");
-        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-0-7475-3269-9"));
-        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "978-0-06-112008-4"));
-        library.addBook(new Book("1984", "George Orwell", "978-0-452-28423-4"));
-        library.addBook(new Book("Pride and Prejudice", "Jane Austen", "978-0-14-143951-8"));
-        library.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0-7432-7356-5"));
+        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-0-7475-3269-9", true));
+        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "978-0-06-112008-4", true));
+        library.addBook(new Book("1984", "George Orwell", "978-0-452-28423-4", true));
+        library.addBook(new Book("Pride and Prejudice", "Jane Austen", "978-0-14-143951-8", true));
+        library.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0-7432-7356-5", true));
 
         System.out.println("\n" + "=".repeat(50));
 
@@ -80,7 +80,7 @@ public class LibraryDemo {
 
         // Mencoba menambahkan buku yang sudah ada
         System.out.println("\n7. MENCOBA MENAMBAHKAN BUKU YANG SUDAH ADA:");
-        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-0-7475-3269-9"));
+        library.addBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-0-7475-3269-9", true));
 
         System.out.println("\n" + "=".repeat(50));
 
@@ -94,8 +94,10 @@ public class LibraryDemo {
             System.out.println("2. Hapus Buku");
             System.out.println("3. Cari Buku");
             System.out.println("4. Tampilkan Semua Buku");
-            System.out.println("5. Keluar");
-            System.out.print("Pilih opsi (1-5): ");
+            System.out.println("5. Pinjam Buku");
+            System.out.println("6. Kembalikan Buku");
+            System.out.println("7. Keluar");
+            System.out.print("Pilih opsi (1-7): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -109,7 +111,23 @@ public class LibraryDemo {
                     System.out.print("Masukkan ISBN: ");
                     String isbn = scanner.nextLine();
 
-                    Book newBook = new Book(title, author, isbn);
+                    boolean availability;
+                    while (true) {
+                        System.out.print("Ketersediaan (ya/tidak): ");
+                        String input = scanner.nextLine().trim().toLowerCase();
+
+                        if (input.equals("ya") || input.equals("y")) {
+                            availability = true;
+                            break;
+                        } else if (input.equals("tidak") || input.equals("t")) {
+                            availability = false;
+                            break;
+                        } else {
+                            System.out.println("Input tidak valid. Masukkan 'ya' atau 'tidak'.");
+                        }
+                    }
+
+                    Book newBook = new Book(title, author, isbn, availability);
                     library.addBook(newBook);
                     break;
 
@@ -135,12 +153,36 @@ public class LibraryDemo {
                     break;
 
                 case 5:
+                    System.out.print("Masukkan judul buku yang dipinjam: ");
+                    String borrowBookTitle = scanner.nextLine();
+                    Boolean borrowBookResult = library.manageBookAvailability(borrowBookTitle, false);
+                    if (borrowBookResult == null) {
+                        System.out.println("Mohon maaf, buku tidak ditemukan!");
+                    } else if (borrowBookResult == false) {
+                        System.out.println("Mohon maaf, buku sedang dipinjam!");
+                    } else {
+                        System.out.println("Buku berhasil dipinjam.");
+                    }
+                    break;
+
+                case 6:
+                    System.out.print("Masukkan judul buku yang dikembalikan: ");
+                    String returnBookTitle = scanner.nextLine();
+                    Boolean returnBookResult = library.manageBookAvailability(returnBookTitle, true);
+                    if (returnBookResult == null) {
+                        System.out.println("Mohon maaf, buku tidak ditemukan!");
+                    } else {
+                        System.out.println("Buku berhasil dikembalikan.");
+                    }
+                    break;
+
+                case 7:
                     continueProgram = false;
                     System.out.println("Terima kasih telah menggunakan sistem perpustakaan!");
                     break;
 
                 default:
-                    System.out.println("Pilihan tidak valid. Silakan pilih 1-5.");
+                    System.out.println("Pilihan tidak valid. Silakan pilih 1-7.");
             }
         }
 

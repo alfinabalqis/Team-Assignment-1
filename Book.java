@@ -2,12 +2,14 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
+    private Boolean availability;
 
     // Constructor
-    public Book(String title, String author, String isbn) {
+    public Book(String title, String author, String isbn, Boolean availability) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
+        this.availability = availability;
     }
 
     // Getter methods
@@ -23,6 +25,10 @@ public class Book {
         return isbn;
     }
 
+    public Boolean getAvailability() {
+        return availability;
+    }
+
     // Setter methods
     public void setTitle(String title) {
         this.title = title;
@@ -36,13 +42,18 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
+    }
+
     // Override toString method untuk menampilkan informasi buku
     @Override
     public String toString() {
-        return "Book{" +
+        return "{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
+                ", availability='" + (availability ? "tersedia" : "tidak tersedia") + '\'' +
                 '}';
     }
 
