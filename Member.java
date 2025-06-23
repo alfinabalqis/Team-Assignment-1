@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Member extends User {
 
     public Member(String userId, String name) {
@@ -6,8 +7,7 @@ public class Member extends User {
     }
 
     @Override
-    public void interactWithSystem(Library library, int choice) {
-        Scanner scanner = new Scanner(System.in);
+    public void interactWithSystem(Library library, int choice, Scanner scanner) {
         switch (choice) {
             case 1: // Pinjam Buku
                 System.out.print("Masukkan judul buku yang ingin dipinjam: ");

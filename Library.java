@@ -136,16 +136,16 @@ public class Library {
     /**
      * Pinjam dan kembalikan buku berdasarkan judul
      * 
-     * @param title Judul buku yang dicari
+     * @param title  Judul buku yang dicari
      * @param status pinjam=false, kembalikan=true
      * @return Book object jika ditemukan, null jika tidak ditemukan
      */
     public Boolean manageBookAvailability(String title, Boolean status) {
         for (int i = 0; i < currentSize; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                if(status == false && books[i].getAvailability() == false) {
+                if (status == false && books[i].getAvailability() == false) {
                     return false; // Buku sedang dipinjam
-                } else if(status == false && books[i].getAvailability() == true) {
+                } else if (status == false && books[i].getAvailability() == true) {
                     books[i].setAvailability(false);
                     return true; // Buku berhasil dipinjam
                 } else {

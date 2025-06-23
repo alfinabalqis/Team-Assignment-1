@@ -68,7 +68,7 @@ public class LibraryDemo {
                 switch (choice) {
                     case 1:
                     case 2:
-                        user.interactWithSystem(library, choice);
+                        user.interactWithSystem(library, choice, scanner);
                         break;
                     case 3:
                         System.out.print("Masukkan judul: ");
@@ -92,7 +92,7 @@ public class LibraryDemo {
                 switch (choice) {
                     case 1:
                     case 2:
-                        user.interactWithSystem(library, choice);
+                        user.interactWithSystem(library, choice, scanner);
                         break;
                     case 3:
                         System.out.print("Masukkan judul: ");

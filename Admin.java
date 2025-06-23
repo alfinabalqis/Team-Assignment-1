@@ -7,8 +7,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void interactWithSystem(Library library, int choice) {
-        Scanner scanner = new Scanner(System.in);
+    public void interactWithSystem(Library library, int choice, Scanner scanner) {
         switch (choice) {
             case 1: // Tambah Buku
                 System.out.print("Masukkan judul buku: ");

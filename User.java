@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public abstract class User {
     private String userId;
     private String name;
@@ -21,5 +23,6 @@ public abstract class User {
     }
 
     // Metode abstrak untuk menunjukkan interaksi polymorphic
-    public abstract void interactWithSystem(Library library, int choice); // Menambahkan Library sebagai parameter
+    public abstract void interactWithSystem(Library library, int choice, Scanner scanner); // Menambahkan Library
+                                                                                           // sebagai parameter
 }
