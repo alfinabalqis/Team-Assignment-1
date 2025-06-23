@@ -19,4 +19,7 @@ public abstract class User {
     public String toString() {
         return "ID: " + userId + ", Nama: " + name;
     }
+
+    // Metode abstrak untuk menunjukkan interaksi polymorphic
+    public abstract void interactWithSystem(Library library, int choice); // Menambahkan Library sebagai parameter
 }
