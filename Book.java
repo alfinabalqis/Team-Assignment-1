@@ -49,12 +49,10 @@ public class Book {
     // Override toString method untuk menampilkan informasi buku
     @Override
     public String toString() {
-        return "{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", availability='" + (availability ? "tersedia" : "tidak tersedia") + '\'' +
-                '}';
+        return "\nJudul       : " + title +
+                "\nPenulis     : " + author +
+                "\nISBN        : " + isbn +
+                "\nKetersediaan: " + (availability ? "Tersedia" : "Sedang dipinjam");
     }
 
     // Override equals method untuk membandingkan buku
